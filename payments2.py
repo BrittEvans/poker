@@ -2,8 +2,6 @@
 
 import sys
 import pandas as pd
-import seaborn as sns
-from matplotlib import pyplot as plt
 
 
 class Payment:
@@ -66,10 +64,9 @@ def daily_totals(all_data):
     return pd.DataFrame(out)
 
 
-if __name__ == "__main__":
-
+def do_rollup() -> pd.DataFrame:
     # Load all the results
-    results = pd.read_csv("/Users/britt/poker/pokerlog.csv", parse_dates=["date"])
+    results = pd.read_csv("pokerlog.csv", parse_dates=["date"])
 
     # Filter by the last game
     max_date = results.date.max()
@@ -89,6 +86,12 @@ if __name__ == "__main__":
         df["total"] = df.profit.cumsum()
         totals.append(df)
     to_plot = pd.concat(totals)
+    return to_plot
+
+if __name__ == "__main__":
+
+    # Load all the results
+    do_rollup()
 
     sns.set_style("darkgrid")
     p3 = sns.lineplot(x="date",y="total",hue="name", style="name", dashes=False, markers=True, data=to_plot)
