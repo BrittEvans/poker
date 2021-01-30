@@ -13,6 +13,10 @@ df = (payments2.do_rollup()
               overall=lambda x: x.total.apply(lambda i: f"${i:.2f}"),
               ))
 
+df.query("name == 'Britt'")["profit"].sum()
+zach_days = df.query("name == 'Zach'")["date"].unique()
+df[df.date.isin(zach_days)].query("name == 'Britt'")["profit"].sum()
+
 people = {"Alex": "blue",
           "Britt": "orange",
           "Colin": "green",
