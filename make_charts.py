@@ -40,7 +40,7 @@ for name, my_df in df.groupby("name"):
                      row=1, col=1)
 
 #fig.update_layout(yaxis_range=[-500,500], row=1, col=1)
-fig.update_yaxes(range=[-600,600], row=1, col=1)
+fig.update_yaxes(range=[-800,800], row=1, col=1)
 
 
 fig.add_trace(
